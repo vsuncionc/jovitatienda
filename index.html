@@ -30,22 +30,35 @@
     </nav>
 
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__ambiance" aria-hidden="true">
+        <span class="hero__orb hero__orb--teal"></span>
+        <span class="hero__orb hero__orb--gold"></span>
+        <span class="hero__orb hero__orb--soft"></span>
+        <span class="hero__spark hero__spark--1"></span>
+        <span class="hero__spark hero__spark--2"></span>
+        <span class="hero__spark hero__spark--3"></span>
+      </div>
       <div class="hero__content">
-        <img
-          src="assets/logo.png"
-          alt="LA JOVITA — Termos, Carteras y Accesorios"
-          class="hero__logo"
-          width="280"
-          height="280"
-        >
+        <div class="hero__logo-wrap">
+          <span class="hero__logo-ring" aria-hidden="true"></span>
+          <span class="hero__logo-shine" aria-hidden="true"></span>
+          <img
+            src="assets/logo.png"
+            alt="LA JOVITA — Termos, Carteras y Accesorios"
+            class="hero__logo"
+            width="280"
+            height="280"
+          >
+        </div>
         <p class="hero__eyebrow">Catálogo digital</p>
         <h1 id="hero-title" class="hero__title">LA JOVITA</h1>
         <p class="hero__tagline">Descubre tu estilo</p>
         <p class="hero__description">
           Moda, elegancia y accesorios para cada ocasión
         </p>
-        <a class="btn btn--primary" href="#catalogo">VER CATÁLOGO</a>
+        <a class="btn btn--primary btn--hero" href="#catalogo">
+          <span>VER CATÁLOGO</span>
+        </a>
       </div>
     </section>
   </header>
