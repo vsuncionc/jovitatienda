@@ -14,8 +14,7 @@ Funciona sin backend, sin base de datos y es compatible con **GitHub Pages**.
 ├── js/
 │   └── app.js
 ├── data/
-│   ├── productos.json
-│   └── productos.js          (espejo para file://)
+│   └── productos.json
 ├── assets/
 │   ├── logo.png
 │   ├── favicon.png
@@ -26,12 +25,10 @@ Funciona sin backend, sin base de datos y es compatible con **GitHub Pages**.
 
 ## Cómo ejecutar localmente
 
-El catálogo lee primero `data/productos.json` con `fetch` (Live Server, `npx serve`, GitHub Pages).
+El catálogo carga los productos solo desde `data/productos.json` con `fetch`.  
+No abras `index.html` con doble clic (`file://`): el navegador bloquea esa carga.
 
-Si abres `index.html` con doble clic (`file://`), el navegador bloquea ese `fetch` por CORS.
-En ese caso se usa automáticamente el espejo `data/productos.js` (mismos productos).
-
-**Fuente de verdad:** edita siempre `data/productos.json` y copia el mismo arreglo a `data/productos.js` (`window.PRODUCTOS_DATA = [...]`) para que el modo doble clic siga funcionando.
+Usa un servidor local:
 
 ### Opción A — Live Server (VS Code / Cursor)
 
@@ -59,8 +56,7 @@ Abre `http://localhost:8080`.
 
 1. Copia la foto del producto en la carpeta `imagenes/`.
 2. Abre `data/productos.json` y agrega el producto.
-3. Sincroniza el mismo contenido en `data/productos.js` (arreglo `window.PRODUCTOS_DATA`).
-4. Ejemplo de objeto:
+3. Ejemplo de objeto:
 
 ```json
 {
@@ -74,8 +70,8 @@ Abre `http://localhost:8080`.
 }
 ```
 
-5. Usa una ruta **relativa** a la imagen (`imagenes/nombre-archivo.jpg`).
-6. Guarda y recarga la página.
+4. Usa una ruta **relativa** a la imagen (`imagenes/nombre-archivo.jpg`).
+5. Guarda y recarga la página.
 
 Los filtros de categoría se generan automáticamente a partir de las categorías del JSON.
 

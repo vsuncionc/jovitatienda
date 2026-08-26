@@ -133,84 +133,20 @@ function configurarRedesSociales() {
 }
 
 /**
- * Carga productos.json vía fetch (HTTP/HTTPS / GitHub Pages).
- * En file:// el navegador bloquea fetch; se usa espejo data/productos.js.
- */
-function cargarProductosDesdeScript() {
-  return new Promise((resolve, reject) => {
-    if (Array.isArray(window.PRODUCTOS_DATA)) {
-      resolve(window.PRODUCTOS_DATA);
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "data/productos.js";
-    script.async = true;
-    script.onload = () => {
-      if (Array.isArray(window.PRODUCTOS_DATA)) {
-        resolve(window.PRODUCTOS_DATA);
-      } else {
-        reject(new Error("PRODUCTOS_DATA no disponible en productos.js"));
-      }
-    };
-    script.onerror = () => {
-      reject(new Error("No se pudo cargar data/productos.js"));
-    };
-    document.head.appendChild(script);
-  });
-}
-
-/**
  * Carga el catálogo desde data/productos.json
  */
 async function cargarProductos() {
   const mensajeCarga = document.getElementById("mensaje-carga");
   const mensajeError = document.getElementById("mensaje-error");
-  const jsonUrl = "data/productos.json";
-
-  // #region agent log
-  fetch('http://127.0.0.1:7269/ingest/343f09b6-95ef-4dda-aec9-88e0e7c52511',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'b8e5ef'},body:JSON.stringify({sessionId:'b8e5ef',runId:'post-fix',hypothesisId:'A',location:'app.js:cargarProductos:entry',message:'Inicio carga catalogo',data:{protocol:window.location.protocol,origin:window.location.origin,href:window.location.href,jsonUrl},timestamp:Date.now()})}).catch(()=>{});
-  // #endregion
 
   try {
-    let data = null;
-    let loadSource = null;
+    const response = await fetch("data/productos.json");
 
-    // #region agent log
-    let resolvedUrl = jsonUrl;
-    try { resolvedUrl = new URL(jsonUrl, window.location.href).href; } catch (_) {}
-    fetch('http://127.0.0.1:7269/ingest/343f09b6-95ef-4dda-aec9-88e0e7c52511',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'b8e5ef'},body:JSON.stringify({sessionId:'b8e5ef',runId:'post-fix',hypothesisId:'B',location:'app.js:cargarProductos:beforeFetch',message:'Antes de fetch productos.json',data:{jsonUrl,resolvedUrl},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
-
-    try {
-      const response = await fetch(jsonUrl);
-
-      // #region agent log
-      fetch('http://127.0.0.1:7269/ingest/343f09b6-95ef-4dda-aec9-88e0e7c52511',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'b8e5ef'},body:JSON.stringify({sessionId:'b8e5ef',runId:'post-fix',hypothesisId:'C',location:'app.js:cargarProductos:afterFetch',message:'Respuesta fetch recibida',data:{ok:response.ok,status:response.status,statusText:response.statusText,contentType:response.headers.get('content-type')},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-
-      data = await response.json();
-      loadSource = "json-fetch";
-    } catch (fetchError) {
-      // #region agent log
-      fetch('http://127.0.0.1:7269/ingest/343f09b6-95ef-4dda-aec9-88e0e7c52511',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'b8e5ef'},body:JSON.stringify({sessionId:'b8e5ef',runId:'post-fix',hypothesisId:'A',location:'app.js:cargarProductos:fetchFailed',message:'Fetch falló; intentando fallback file',data:{name:fetchError&&fetchError.name,message:fetchError&&fetchError.message,protocol:window.location.protocol,willUseFallback:window.location.protocol==='file:'},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
-
-      if (window.location.protocol !== "file:") {
-        throw fetchError;
-      }
-
-      data = await cargarProductosDesdeScript();
-      loadSource = "file-fallback-js";
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
     }
 
-    // #region agent log
-    fetch('http://127.0.0.1:7269/ingest/343f09b6-95ef-4dda-aec9-88e0e7c52511',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'b8e5ef'},body:JSON.stringify({sessionId:'b8e5ef',runId:'post-fix',hypothesisId:'D',location:'app.js:cargarProductos:jsonParsed',message:'Catalogo listo',data:{isArray:Array.isArray(data),count:Array.isArray(data)?data.length:null,loadSource},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
+    const data = await response.json();
 
     if (!Array.isArray(data)) {
       throw new Error("El JSON no es un arreglo válido.");
@@ -229,10 +165,6 @@ async function cargarProductos() {
     generarFiltros();
     mostrarProductos(productosFiltrados);
   } catch (error) {
-    // #region agent log
-    fetch('http://127.0.0.1:7269/ingest/343f09b6-95ef-4dda-aec9-88e0e7c52511',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'b8e5ef'},body:JSON.stringify({sessionId:'b8e5ef',runId:'post-fix',hypothesisId:'A',location:'app.js:cargarProductos:catch',message:'Error al cargar catalogo',data:{name:error&&error.name,message:error&&error.message,protocol:window.location.protocol,isFileProtocol:window.location.protocol==='file:'},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
-
     console.error("Error al cargar el catálogo:", error);
 
     if (mensajeCarga) {
@@ -242,9 +174,9 @@ async function cargarProductos() {
     if (mensajeError) {
       if (window.location.protocol === "file:") {
         mensajeError.innerHTML =
-          "No se pudo cargar el catálogo. Verifica productos.json y productos.js.<br>" +
-          "<small>Con <code>file://</code> el navegador bloquea fetch; se usa el espejo " +
-          "<code>data/productos.js</code>. Preferible: Live Server o <code>npx serve</code>.</small>";
+          "No se pudo cargar el catálogo. Verifica el archivo productos.json.<br>" +
+          "<small>Si abriste la página con <code>file://</code>, usa un servidor local " +
+          "(Live Server o <code>npx serve</code>) porque el navegador bloquea el fetch.</small>";
       } else {
         mensajeError.textContent =
           "No se pudo cargar el catálogo. Verifica el archivo productos.json.";
