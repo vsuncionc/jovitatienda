@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="LA JOVITA - Catálogo digital de termos, carteras, accesorios y prendas."
+  >
+  <title>LA JOVITA | Termos, Carteras y Accesorios</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#catalogo">Ir al catálogo</a>
+
+  <header class="site-header" id="inicio">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="nav__brand" href="#inicio">
+        <img src="assets/logo.png" alt="LA JOVITA" class="nav__logo" width="48" height="48">
+        <span class="nav__name">LA JOVITA</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__content">
+        <img
+          src="assets/logo.png"
+          alt="LA JOVITA — Termos, Carteras y Accesorios"
+          class="hero__logo"
+          width="280"
+          height="280"
+        >
+        <p class="hero__eyebrow">Catálogo digital</p>
+        <h1 id="hero-title" class="hero__title">LA JOVITA</h1>
+        <p class="hero__tagline">Descubre tu estilo</p>
+        <p class="hero__description">
+          Moda, elegancia y accesorios para cada ocasión
+        </p>
+        <a class="btn btn--primary" href="#catalogo">VER CATÁLOGO</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="catalog" id="catalogo" aria-labelledby="catalogo-title">
+      <div class="section-intro">
+        <p class="section-intro__eyebrow">Colección</p>
+        <h2 id="catalogo-title">Catálogo de Productos</h2>
+        <p class="section-intro__text">Encuentra tu estilo favorito</p>
+      </div>
+
+      <div class="catalog__controls">
+        <div class="search" role="search">
+          <label class="visually-hidden" for="buscar-producto">Buscar producto</label>
+          <input
+            type="search"
+            id="buscar-producto"
+            class="search__input"
+            placeholder="Buscar producto..."
+            autocomplete="off"
+          >
+        </div>
+        <div
+          class="filters"
+          id="filtros-categorias"
+          role="group"
+          aria-label="Filtrar por categoría"
+        >
+          <!-- Filtros generados por JS -->
+        </div>
+      </div>
+
+      <p class="catalog__status" id="mensaje-carga" role="status">
+        Cargando catálogo...
+      </p>
+      <p class="catalog__status catalog__status--error" id="mensaje-error" hidden>
+        No se pudo cargar el catálogo. Verifica el archivo productos.json.
+      </p>
+      <p class="catalog__status" id="mensaje-vacio" hidden>
+        No se encontraron productos con esos criterios.
+      </p>
+
+      <div class="product-grid" id="productos-container" aria-live="polite">
+        <!-- Tarjetas generadas por JS -->
+      </div>
+    </section>
+
+    <section class="contact" id="contacto" aria-labelledby="contacto-title">
+      <div class="contact__panel">
+        <p class="section-intro__eyebrow">Conéctate</p>
+        <h2 id="contacto-title">Contáctanos</h2>
+        <p class="section-intro__text">
+          Escríbenos y encuentra tu próxima compra
+        </p>
+        <div class="social" id="social-links">
+          <a class="social__btn social__btn--whatsapp" href="#" data-social="whatsapp" target="_blank" rel="noopener noreferrer">
+            WhatsApp
+          </a>
+          <a class="social__btn social__btn--instagram" href="#" data-social="instagram" target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>
+          <a class="social__btn social__btn--facebook" href="#" data-social="facebook" target="_blank" rel="noopener noreferrer">
+            Facebook
+          </a>
+          <a class="social__btn social__btn--tiktok" href="#" data-social="tiktok" target="_blank" rel="noopener noreferrer">
+            TikTok
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <img src="assets/logo.png" alt="" class="site-footer__logo" width="72" height="72" aria-hidden="true">
+    <p class="site-footer__brand">LA JOVITA</p>
+    <p class="site-footer__tagline">Catálogo Digital de Prendas y Accesorios</p>
+    <p class="site-footer__copy">© 2026 LA JOVITA - Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Modal / lightbox de producto -->
+  <div
+    class="modal"
+    id="modal-producto"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-titulo"
+    hidden
+  >
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="document">
+      <button type="button" class="modal__close" data-close-modal aria-label="Cerrar vista ampliada">
+        ×
+      </button>
+      <button type="button" class="modal__nav modal__nav--prev" id="modal-prev" aria-label="Producto anterior">
+        ‹
+      </button>
+      <button type="button" class="modal__nav modal__nav--next" id="modal-next" aria-label="Producto siguiente">
+        ›
+      </button>
+      <div class="modal__media">
+        <img id="modal-imagen" src="" alt="">
+      </div>
+      <div class="modal__info">
+        <p class="modal__categoria" id="modal-categoria"></p>
+        <h3 id="modal-titulo"></h3>
+        <p class="modal__descripcion" id="modal-descripcion"></p>
+        <p class="modal__precio" id="modal-precio"></p>
+        <button type="button" class="btn btn--whatsapp" id="modal-whatsapp">
+          CONSULTAR POR WHATSAPP
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>

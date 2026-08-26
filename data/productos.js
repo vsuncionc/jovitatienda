@@ -1,0 +1,161 @@
+/**
+ * Espejo de productos.json solo para apertura con file://
+ * (el navegador bloquea fetch de JSON en file://).
+ * Fuente de verdad: data/productos.json
+ * Mantén ambos sincronizados al editar productos.
+ */
+window.PRODUCTOS_DATA = [
+  {
+    "id": 1,
+    "codigo": "CTH260504110",
+    "nombre": "Set de Ganchos y Vincha",
+    "categoria": "Accesorios",
+    "precio": 6.50,
+    "imagen": "imagenes/CTH260504110.jpg",
+    "descripcion": "Set con ganchos, vincha y muñequeras. Colores pasteles."
+  },
+  {
+    "id": 2,
+    "codigo": "CTH260514102",
+    "nombre": "Lámpara UV para Uñas",
+    "categoria": "Accesorios",
+    "precio": 9.70,
+    "imagen": "imagenes/CTH260514102.jpg",
+    "descripcion": "Lámpara UV 54W de secado rápido, perfecta para manicure."
+  },
+  {
+    "id": 3,
+    "codigo": "CTH260514105",
+    "nombre": "Lámpara de Noche",
+    "categoria": "Accesorios",
+    "precio": 7.50,
+    "imagen": "imagenes/CTH260514105.jpg",
+    "descripcion": "Lámpara de noche metálica/ABS con brazo flexible. Colores variados."
+  },
+  {
+    "id": 4,
+    "codigo": "CTM29",
+    "nombre": "Bolso Expandible",
+    "categoria": "Carteras",
+    "precio": 10.00,
+    "imagen": "imagenes/CTM29.jpg",
+    "descripcion": "Bolso expandible resistente al agua. Colores variados."
+  },
+  {
+    "id": 5,
+    "codigo": "CTM48E",
+    "nombre": "Yogurera con Cuchara",
+    "categoria": "Termos",
+    "precio": 5.00,
+    "imagen": "imagenes/CTM48E.jpg",
+    "descripcion": "Envase 450 ml con cuchara y tapa. Colores variados."
+  },
+  {
+    "id": 6,
+    "codigo": "CTP260504101",
+    "nombre": "Funda para Moto",
+    "categoria": "Accesorios",
+    "precio": 4.00,
+    "imagen": "imagenes/CTP260504101.jpg",
+    "descripcion": "Funda impermeable EVA 205x125 cm. Ligera y reutilizable."
+  },
+  {
+    "id": 7,
+    "codigo": "DM004CC",
+    "nombre": "Cable Tipo C a Tipo C",
+    "categoria": "Accesorios",
+    "precio": 6.00,
+    "imagen": "imagenes/DM004CC.jpg",
+    "descripcion": "Cable USB-C 1 metro, carga rápida hasta 67W."
+  },
+  {
+    "id": 8,
+    "codigo": "MJ56",
+    "nombre": "Aro de Luz con Trípode",
+    "categoria": "Accesorios",
+    "precio": 58.00,
+    "imagen": "imagenes/MJ56.jpg",
+    "descripcion": "Aro de luz RGB con trípode de 2 m. Ideal para contenido y selfies."
+  },
+  {
+    "id": 9,
+    "codigo": "TMC1220110",
+    "nombre": "Cartera de Dama Acolchada",
+    "categoria": "Carteras",
+    "precio": 16.00,
+    "imagen": "imagenes/TMC1220110.jpg",
+    "descripcion": "Cartera acolchada con herrajes dorados. Colores surtidos."
+  },
+  {
+    "id": 10,
+    "codigo": "TMC260504103",
+    "nombre": "Cartera para Dama Texturizada",
+    "categoria": "Carteras",
+    "precio": 17.50,
+    "imagen": "imagenes/TMC260504103.jpg",
+    "descripcion": "Cartera de dama en PU con textura y correa desmontable. Colores variados."
+  },
+  {
+    "id": 11,
+    "codigo": "TMC260504104",
+    "nombre": "Cartera para Dama con Asa Soft",
+    "categoria": "Carteras",
+    "precio": 18.50,
+    "imagen": "imagenes/TMC260504104.jpg",
+    "descripcion": "Cartera elegante con asa soft y cierre circular. Material PU."
+  },
+  {
+    "id": 12,
+    "codigo": "TMCC260426132",
+    "nombre": "Estante 4 Niveles",
+    "categoria": "Accesorios",
+    "precio": 12.70,
+    "imagen": "imagenes/TMCC260426132.jpg",
+    "descripcion": "Estante con ruedas en ABS y metal. Ideal para organizar espacios."
+  },
+  {
+    "id": 13,
+    "codigo": "TME251030131",
+    "nombre": "Organizador Kawaii",
+    "categoria": "Accesorios",
+    "precio": 9.00,
+    "imagen": "imagenes/TME251030131.jpg",
+    "descripcion": "Organizador de escritorio giratorio con cajones. Estilo kawaii."
+  },
+  {
+    "id": 14,
+    "codigo": "TMF13557",
+    "nombre": "Foco LED 40W",
+    "categoria": "Accesorios",
+    "precio": 4.50,
+    "imagen": "imagenes/TMF13557.jpg",
+    "descripcion": "Foco LED 40W de alto rendimiento. Base E27."
+  },
+  {
+    "id": 15,
+    "codigo": "TMH260428102",
+    "nombre": "Rasurador Eléctrico",
+    "categoria": "Accesorios",
+    "precio": 19.00,
+    "imagen": "imagenes/TMH260428102.jpg",
+    "descripcion": "Rasurador eléctrico 4 en 1 con accesorios intercambiables y carga USB."
+  },
+  {
+    "id": 16,
+    "codigo": "TMXX260501105",
+    "nombre": "Organizador de Huevos",
+    "categoria": "Accesorios",
+    "precio": 8.00,
+    "imagen": "imagenes/TMXX260501105.jpg",
+    "descripcion": "Dispensador de huevos en ABS. Capacidad práctica para refrigerador."
+  },
+  {
+    "id": 17,
+    "codigo": "TMXX260501108",
+    "nombre": "Set Tapers Almacenamiento",
+    "categoria": "Accesorios",
+    "precio": 8.00,
+    "imagen": "imagenes/TMXX260501108.jpg",
+    "descripcion": "Set de 3 tapers de acrílico para conservar alimentos."
+  }
+]
